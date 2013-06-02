@@ -24,8 +24,7 @@
     <%= f.text_field :location %>
   </div>
   <div class="field">
-    <%= f.label :giving_user_id, "Giving User:" %><br />
-    <%= f.number_field :giving_user_id %>
+    <%= f.hidden_field :giving_user_id, :value => session[:user_id] %>
   </div>
   <div class="field">
     <%= f.label :receiving_user_id, "Receiving User:" %><br />

@@ -1,6 +1,15 @@
 class ErrandsController < ApplicationController
   # GET /errands
   # GET /errands.json
+
+before_filter :require_signed_in_user, only: [:new, :create]
+
+def require_signed_in_user
+  unless signed_in?
+  redirect_to new_session_url, notice: "Must be signed in for this."
+  end
+end
+
   def index
     @errands = Errand.all
 

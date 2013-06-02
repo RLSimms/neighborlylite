@@ -1,5 +1,11 @@
 NeighborlyLite::Application.routes.draw do
 
+  resources :conversations
+
+
+  resources :messages
+
+
   root to: 'Users#index'
 
   get '/sessions/new' => 'Sessions#new', as: 'new_session'

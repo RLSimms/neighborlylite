@@ -12,7 +12,7 @@
 
 <p>
   <b>Photo:</b>
-  <%= @user.photo %>
+  <%= image_tag @user.photo, :width => 100 %>
 </p>
 
 <p>
@@ -20,10 +20,7 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
+
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

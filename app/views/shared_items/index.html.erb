@@ -1,8 +1,9 @@
-<h1>Listing shared_items</h1>
+<h1>Shared Items</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>Name</th>
+    <th>Photo</th>
     <th>Description</th>
     <th>Available</th>
     <th>Owner user</th>
@@ -14,11 +15,12 @@
 
 <% @shared_items.each do |shared_item| %>
   <tr>
-    <td><%= shared_item.name %></td>
+    <td><%= link_to shared_item.name, shared_item %></td>
+    <td><%= image_tag shared_item.photo, :width => 100 %></td>
     <td><%= shared_item.description %></td>
     <td><%= shared_item.available %></td>
-    <td><%= shared_item.owner_user.name %></td>
-    <td><%= shared_item.borrower_user.name %></td>
+    <td><%= link_to shared_item.owner_user.name, shared_item.owner_user %></td>
+    <td><%= link_to shared_item.borrower_user.name, shared_item.borrower_user %></td>
     <td><%= link_to 'Show', shared_item %></td>
     <td><%= link_to 'Edit', edit_shared_item_path(shared_item) %></td>
     <td><%= link_to 'Destroy', shared_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
