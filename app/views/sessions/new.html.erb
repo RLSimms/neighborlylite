@@ -1,0 +1,21 @@
+<br>
+<br>
+
+<h1>Sign In</h1>
+
+<p id="notice"><%= notice %></p>
+
+<%= form_tag sessions_url do %>
+<div>
+<%= label_tag :name, "Who are you?" %>
+<%= text_field_tag :name, @user.name %>
+</div>
+
+<div>
+<%= label_tag :password, "What's your password?" %>
+<%= password_field_tag :password %>
+</div>
+
+<%= submit_tag "Sign In" %>
+
+<% end %>

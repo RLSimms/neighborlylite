@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @shared_item.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @shared_item.description %>
+</p>
+
+<p>
+  <b>Available:</b>
+  <%= @shared_item.available %>
+</p>
+
+<p>
+  <b>Owner user:</b>
+  <%= @shared_item.owner_user_id %>
+</p>
+
+<p>
+  <b>Borrower user:</b>
+  <%= @shared_item.borrower_user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_shared_item_path(@shared_item) %> |
+<%= link_to 'Back', shared_items_path %>

@@ -1,0 +1,31 @@
+<h1>Listing shared_items</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Available</th>
+    <th>Owner user</th>
+    <th>Borrower user</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shared_items.each do |shared_item| %>
+  <tr>
+    <td><%= shared_item.name %></td>
+    <td><%= shared_item.description %></td>
+    <td><%= shared_item.available %></td>
+    <td><%= shared_item.owner_user.name %></td>
+    <td><%= shared_item.borrower_user.name %></td>
+    <td><%= link_to 'Show', shared_item %></td>
+    <td><%= link_to 'Edit', edit_shared_item_path(shared_item) %></td>
+    <td><%= link_to 'Destroy', shared_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shared item', new_shared_item_path %>

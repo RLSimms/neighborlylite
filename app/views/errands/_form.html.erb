@@ -1,0 +1,41 @@
+<%= form_for(@errand) do |f| %>
+  <% if @errand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@errand.errors.count, "error") %> prohibited this errand from being saved:</h2>
+
+      <ul>
+      <% @errand.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :giving_user_id, "Giving User:" %><br />
+    <%= f.number_field :giving_user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :receiving_user_id, "Receiving User:" %><br />
+    <%= f.collection_select :receiving_user_id, User.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :completed, "Completed?" %><br />
+    <%= f.check_box :completed %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

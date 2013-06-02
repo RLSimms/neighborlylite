@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @errand.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @errand.description %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @errand.location %>
+</p>
+
+<p>
+  <b>Giving user:</b>
+  <%= @errand.giving_user_id %>
+</p>
+
+<p>
+  <b>Receiving user:</b>
+  <%= @errand.receiving_user_id %>
+</p>
+
+<p>
+  <b>Completed:</b>
+  <%= @errand.completed %>
+</p>
+
+
+<%= link_to 'Edit', edit_errand_path(@errand) %> |
+<%= link_to 'Back', errands_path %>

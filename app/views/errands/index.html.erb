@@ -1,0 +1,33 @@
+<h1>Listing errands</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Giving user</th>
+    <th>Receiving user</th>
+    <th>Completed</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @errands.each do |errand| %>
+  <tr>
+    <td><%= errand.name %></td>
+    <td><%= errand.description %></td>
+    <td><%= errand.location %></td>
+    <td><%= errand.giving_user.name %></td>
+    <td><%= errand.receiving_user.name %></td>
+    <td><%= errand.completed %></td>
+    <td><%= link_to 'Show', errand %></td>
+    <td><%= link_to 'Edit', edit_errand_path(errand) %></td>
+    <td><%= link_to 'Destroy', errand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Errand', new_errand_path %>
