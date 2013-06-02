@@ -21,11 +21,17 @@
   <div class="field">
     <%= f.label :receiver_id, "Send to:" %><br />
     <%= f.collection_select :receiver_id, User.all, :id, :name %>
+
+  <%= f.hidden_field :conversation_id, value: params[:conversation_id] %>
+
+
+<!--
   </div>
   <div class="field">
     <%= f.label :conversation_id %><br />
     <%= f.number_field :conversation_id %>
-  </div>
+  </div> -->
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,8 +1,29 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+
+  before_filter :authorize_user, only: [:edit, :update, :destroy]
+
+  def authorize_user
+    @user = User.find(params[:id])
+    if @user != current_user
+     redirect_to users_url, notice: "Nice try!"
+    end
+  end
+
+
   def index
+    if params[:search]
+    user = User.where("name LIKE ? OR email LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").first
+    if user
+      @users = User.where("name LIKE ? OR email LIKE ?", "#{user.name}", "#{user.email}")
+      # @flights = Flight.where("arrival_airport_id == ? OR departure_airport_id == ? ", "#{airport.id}", "#{airport.id}")
+    else
+      @users = User.all
+    end
+  else
     @users = User.all
+  end
 
     respond_to do |format|
       format.html # index.html.erb

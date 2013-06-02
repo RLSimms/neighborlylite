@@ -14,8 +14,8 @@
 <% @messages.each do |message| %>
   <tr>
     <td><%= message.whats_written %></td>
-    <td><%= message.sender_id %></td>
-    <td><%= message.receiver_id %></td>
+    <td><%= message.sender.name %></td>
+    <td><%= message.receiver.name %></td>
     <td><%= message.conversation_id %></td>
     <td><%= link_to 'Show', message %></td>
     <td><%= link_to 'Edit', edit_message_path(message) %></td>

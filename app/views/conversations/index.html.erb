@@ -1,6 +1,6 @@
-<h1>Listing conversations</h1>
+<h1>Conversations</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>User 1</th>
     <th>User 2</th>
@@ -11,8 +11,8 @@
 
 <% @conversations.each do |conversation| %>
   <tr>
-    <td><%= conversation.user_1_id %></td>
-    <td><%= conversation.user_2_id %></td>
+    <td><%= conversation.sender.name %></td>
+    <td><%= conversation.receiver.name %></td>
     <td><%= link_to 'Show', conversation %></td>
     <td><%= link_to 'Edit', edit_conversation_path(conversation) %></td>
     <td><%= link_to 'Destroy', conversation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

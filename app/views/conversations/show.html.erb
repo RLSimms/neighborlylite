@@ -2,13 +2,34 @@
 
 <p>
   <b>User 1:</b>
-  <%= @conversation.user_1_id %>
+  <%= @conversation.sender.name %>
 </p>
 
 <p>
   <b>User 2:</b>
-  <%= @conversation.user_2_id %>
+  <%= @conversation.receiver.name %>
 </p>
+
+<table class='table table-hover'>
+  <tr>
+    <th>Sender</th>
+    <th>Message</th>
+    <th>Receiver</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @messages.each do |message| %>
+  <tr>
+    <td><%= message.sender.name %></td>
+    <td><%= message.whats_written %></td>
+    <td><%= message.receiver.name %></td>
+
+  </tr>
+<% end %>
+</table>
+
 
 
 <%= link_to 'Edit', edit_conversation_path(@conversation) %> |

@@ -1,9 +1,18 @@
+<%= form_tag(errands_url, class: 'navbar-search pull-left', method: 'get') do %>
+  <%= text_field_tag :search, nil, placeholder: "Search by Errand", class: 'search-query span3'  %>
+<% end %>
+
+<br />
+<br />
+<br />
+
 <h1>Errands</h1>
 
 <table class="table table-hover">
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Price</th>
     <th>Location</th>
     <th>Giving user</th>
     <th>Receiving user</th>
@@ -17,6 +26,7 @@
   <tr>
     <td><%= errand.name %></td>
     <td><%= errand.description %></td>
+    <td><%= errand.price %></td>
     <td><%= errand.location %></td>
     <td><%= errand.giving_user.name %></td>
     <td><%= errand.receiving_user.name %></td>

@@ -2,7 +2,17 @@ class SharedItemsController < ApplicationController
   # GET /shared_items
   # GET /shared_items.json
   def index
+
+    if params[:search]
+    shared_item = SharedItem.where("name LIKE ?", "%#{params[:search]}%").first
+    if shared_item
+      @shared_items = SharedItem.where("name LIKE ?", "#{shared_item.name}")
+    else
+      @shared_items = SharedItem.all
+    end
+  else
     @shared_items = SharedItem.all
+  end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -42,6 +42,8 @@ end
   # GET /messages/new.json
   def new
     @message = Message.new
+    @message.sender_id = session[:user_id]
+    @users = User.where("id != ?", "#{session[:user_id]}")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,6 +60,20 @@ end
   # POST /messages.json
   def create
     @message = Message.new(params[:message])
+
+      if @message.conversation_id.nil?
+      @conversation = Conversation.find_by_user_1_id_and_user_2_id(params[:message][:sender_id], params[:message][:receiver_id])
+      @conversation ||= Conversation.find_by_user_1_id_and_user_2_id(params[:message][:receiver_id], params[:message][:sender_id])
+
+      if @conversation.nil?
+        @conversation = Conversation.new
+        @conversation.user_1_id = params[:message][:sender_id]
+        @conversation.user_2_id = params[:message][:receiver_id]
+        @conversation.save
+      end
+
+      @message.conversation_id = @conversation.id
+    end
 
     respond_to do |format|
       if @message.save

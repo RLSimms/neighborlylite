@@ -14,6 +14,7 @@ class ConversationsController < ApplicationController
   # GET /conversations/1.json
   def show
     @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages
 
     respond_to do |format|
       format.html # show.html.erb

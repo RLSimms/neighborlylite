@@ -11,7 +11,16 @@ def require_signed_in_user
 end
 
   def index
+    if params[:search]
+    errand = Errand.where("name LIKE ?", "%#{params[:search]}%").first
+    if errand
+      @errands = Errand.where("name LIKE ?", "#{errand.name}")
+    else
+      @errands = Errand.all
+    end
+  else
     @errands = Errand.all
+  end
 
     respond_to do |format|
       format.html # index.html.erb

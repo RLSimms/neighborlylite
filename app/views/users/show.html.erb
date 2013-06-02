@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Edit', edit_user_path(@user), class: 'btn' %> |
+<%= link_to 'Back', users_path, class: 'btn' %>
+
+<br />
+<br />
+
 <p>
   <b>Name:</b>
   <%= @user.name %>
@@ -20,8 +26,25 @@
   <%= @user.email %>
 </p>
 
+<p>
+  <b>Sent Messages:</b><br />
+  <% @user.sent_messages.each do |sent_message| %>
+    Sent to:   <%= sent_message.receiver.name %>
+    <li><%= sent_message.whats_written %></li>
+  <% end %>
+
+</p>
+
+<p>
+  <b>Received Messages:</b><br />
+  <% @user.received_messages.each do |received_message| %>
+    Sent from:   <%= received_message.sender.name %>
+    <li><%= received_message.whats_written %></li>
+  <% end %>
+
+</p>
 
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+

@@ -1,3 +1,11 @@
+<%= form_tag(shared_items_url, class: 'navbar-search pull-left', method: 'get') do %>
+  <%= text_field_tag :search, nil, placeholder: "Search by Shared Item", class: 'search-query span3'  %>
+<% end %>
+
+<br />
+<br />
+<br />
+
 <h1>Shared Items</h1>
 
 <table class="table table-hover">
@@ -5,6 +13,7 @@
     <th>Name</th>
     <th>Photo</th>
     <th>Description</th>
+    <th>Price</th>
     <th>Available</th>
     <th>Owner user</th>
     <th>Borrower user</th>
@@ -18,6 +27,7 @@
     <td><%= link_to shared_item.name, shared_item %></td>
     <td><%= image_tag shared_item.photo, :width => 100 %></td>
     <td><%= shared_item.description %></td>
+    <td><%= shared_item.price %></td>
     <td><%= shared_item.available %></td>
     <td><%= link_to shared_item.owner_user.name, shared_item.owner_user %></td>
     <td><%= link_to shared_item.borrower_user.name, shared_item.borrower_user %></td>
