@@ -32,8 +32,9 @@
     <%= f.hidden_field :giving_user_id, :value => session[:user_id] %>
   </div>
   <div class="field">
+    <% users = User.all %>
     <%= f.label :receiving_user_id, "Receiving User:" %><br />
-    <%= f.collection_select :receiving_user_id, User.all, :id, :name %>
+    <%= f.collection_select :receiving_user_id, @users, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :completed, "Completed?" %><br />

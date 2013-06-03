@@ -26,6 +26,8 @@
   <%= @user.email %>
 </p>
 
+<% if current_user == @user %>
+
 <p>
   <b>Sent Messages:</b><br />
   <% @user.sent_messages.each do |sent_message| %>
@@ -44,7 +46,5 @@
 
 </p>
 
-
-
-
+<% end %>
 

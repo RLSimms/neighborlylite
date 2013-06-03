@@ -7,6 +7,10 @@
 <br />
 
 <h1>Shared Items</h1>
+<br />
+<%= link_to 'New Shared item', new_shared_item_path, class: 'btn' %>
+<br />
+<br />
 
 <table class="table table-hover">
   <tr>
@@ -31,13 +35,13 @@
     <td><%= shared_item.available %></td>
     <td><%= link_to shared_item.owner_user.name, shared_item.owner_user %></td>
     <td><%= link_to shared_item.borrower_user.name, shared_item.borrower_user %></td>
-    <td><%= link_to 'Show', shared_item %></td>
-    <td><%= link_to 'Edit', edit_shared_item_path(shared_item) %></td>
-    <td><%= link_to 'Destroy', shared_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', shared_item, class: 'btn' %></td>
+    <td><%= link_to 'Edit', edit_shared_item_path(shared_item), class: 'btn' %></td>
+    <td><%= link_to 'Destroy', shared_item, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Shared item', new_shared_item_path %>
+

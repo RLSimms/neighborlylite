@@ -43,6 +43,8 @@ end
   # GET /errands/new.json
   def new
     @errand = Errand.new
+    @errand.giving_user_id = session[:user_id]
+    @users = User.where("id != ?", "#{session[:user_id]}")
 
     respond_to do |format|
       format.html # new.html.erb

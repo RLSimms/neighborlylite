@@ -1,6 +1,24 @@
 class SharedItemsController < ApplicationController
   # GET /shared_items
   # GET /shared_items.json
+
+before_filter :require_signed_in_user, only: [:new, :create, :edit, :update, :destroy]
+before_filter :authorize_user, only: [:edit, :update, :destroy]
+
+def require_signed_in_user
+  unless signed_in?
+    redirect_to shared_items_url, notice: "Must be signed in for that."
+  end
+end
+
+def authorize_user
+  @shared_item = SharedItem.find(params[:id])
+  if @shared_item.owner_user != current_user
+    redirect_to shared_items_url, notice: "Nice try!"
+  end
+
+end
+
   def index
 
     if params[:search]
@@ -35,6 +53,8 @@ class SharedItemsController < ApplicationController
   # GET /shared_items/new.json
   def new
     @shared_item = SharedItem.new
+    @shared_item.owner_user_id = session[:user_id]
+    @users = User.where("id != ?", "#{session[:user_id]}")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,6 +65,8 @@ class SharedItemsController < ApplicationController
   # GET /shared_items/1/edit
   def edit
     @shared_item = SharedItem.find(params[:id])
+    @shared_item.owner_user_id = session[:user_id]
+    @users = User.where("id != ?", "#{session[:user_id]}")
   end
 
   # POST /shared_items
