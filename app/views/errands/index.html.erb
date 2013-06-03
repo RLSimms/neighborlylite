@@ -30,7 +30,14 @@
     <td><%= errand.location %></td>
     <td><%= errand.giving_user.name %></td>
     <td><%= errand.receiving_user.name %></td>
-    <td><%= errand.completed %></td>
+
+    <% if errand.completed %>
+    <td><%= image_tag("http://images.wikia.com/tractors/images/6/60/X_mark.png", width: 25) %></td>
+    <% else %>
+    <td>  </td>
+    <% end %>
+
+
     <td><%= link_to 'Show', errand %></td>
     <td><%= link_to 'Edit', edit_errand_path(errand) %></td>
     <td><%= link_to 'Destroy', errand, method: :delete, data: { confirm: 'Are you sure?' } %></td>

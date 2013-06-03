@@ -32,7 +32,11 @@
     <td><%= image_tag shared_item.photo, :width => 100 %></td>
     <td><%= shared_item.description %></td>
     <td><%= shared_item.price %></td>
-    <td><%= shared_item.available %></td>
+    <% if shared_item.available %>
+    <td><%= image_tag("http://www.clker.com/cliparts/e/2/a/d/1206574733930851359Ryan_Taylor_Green_Tick.svg.hi.png", width: 25) %></td>
+    <% else %>
+    <td><%= image_tag("http://images.wikia.com/tractors/images/6/60/X_mark.png", width: 25) %></td>
+    <% end %>
     <td><%= link_to shared_item.owner_user.name, shared_item.owner_user %></td>
     <td><%= link_to shared_item.borrower_user.name, shared_item.borrower_user %></td>
     <td><%= link_to 'Show', shared_item, class: 'btn' %></td>

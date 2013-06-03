@@ -18,10 +18,26 @@
   <div class="field">
     <%= f.hidden_field :sender_id, :value => session[:user_id] %>
   </div>
+
+
+  <% if User.find_by_id(@receiver_id) != nil %>
+
   <div class="field">
     <% users = User.all %>
     <%= f.label :receiver_id, "Send to:" %><br />
+    <%= User.find_by_id(@receiver_id).name %>
+  </div>
+
+<% else %>
+
+    <div class="field">
+    <% users = User.all %>
+    <%= f.label :receiver_id, "Send to:" %><br />
     <%= f.collection_select :receiver_id, @users, :id, :name %>
+  </div>
+
+<% end %>
+
 
   <%= f.hidden_field :conversation_id, value: params[:conversation_id] %>
 

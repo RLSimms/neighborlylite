@@ -25,7 +25,9 @@
     <td><%= image_tag user.photo, :width => 100 %></td>
     <td><%= user.address %></td>
     <td><%= user.email %></td>
-    <td><%= link_to 'Message', new_message_url, class: 'btn' %></td>
+    <% if user != current_user %>
+    <td><%= link_to 'Message', new_message_url(receiver_id: user.id), class: 'btn' %></td>
+    <% end %>
     <td><%= link_to 'Show', user, class: 'btn' %></td>
     <td><%= link_to 'Edit', edit_user_path(user), class: 'btn'  %></td>
     <td><%= link_to 'Delete', user, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -45,6 +45,8 @@ end
     @message = Message.new
     @message.sender_id = session[:user_id]
     @users = User.where("id != ?", "#{session[:user_id]}")
+    @receiver_id = params[:receiver_id]
+    @message.receiver_id = params[:receiver_id]
 
     respond_to do |format|
       format.html # new.html.erb

@@ -23,7 +23,12 @@
     <td><%= message.receiver.name %></td>
     <td><%= message.conversation_id %></td>
     <% if message.receiver == current_user || message.sender == current_user %>
-    <td><%= link_to 'Reply', new_message_url, class: 'btn' %></td>
+        <% if current_user == message.receiver %>
+            <% @reply_id = message.sender.id %>
+        <% else %>
+            <% @reply_id = message.receiver.id  %>
+        <% end %>
+    <td><%= link_to 'Reply', new_message_url(receiver_id: @reply_id), class: 'btn' %></td>
     <% end %>
     <td><%= link_to 'Show', message, class: 'btn' %></td>
     <td><%= link_to 'Edit', edit_message_path(message), class: 'btn' %></td>
