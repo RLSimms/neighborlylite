@@ -19,6 +19,26 @@
     <th></th>
   </tr>
 
+<% if @user_exists_from_search != nil %>
+
+<% @users_returned_from_search.each do |user| %>
+  <tr>
+    <td><%= link_to user.name, user %></td>
+    <td><%= image_tag user.photo, :width => 100 %></td>
+    <td><%= user.address %></td>
+    <td><%= user.email %></td>
+    <% if user != current_user %>
+    <td><%= link_to 'Message', new_message_url(receiver_id: user.id), class: 'btn' %></td>
+    <% end %>
+    <td><%= link_to 'Show', user, class: 'btn' %></td>
+    <td><%= link_to 'Edit', edit_user_path(user), class: 'btn'  %></td>
+    <td><%= link_to 'Delete', user, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<% else %>
+
 <% @users.each do |user| %>
   <tr>
     <td><%= link_to user.name, user %></td>
@@ -35,6 +55,10 @@
 <% end %>
 </table>
 
+<% end %>
+
+
 <br />
 
+<%= paginate @users %>
 
