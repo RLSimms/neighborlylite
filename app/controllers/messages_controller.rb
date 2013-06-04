@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
 
-before_filter :require_signed_in_user, except: [:index, :show]
+before_filter :require_signed_in_user
 before_filter :authorize_user, only: [:edit, :update, :destroy]
 
 def require_signed_in_user
@@ -19,7 +19,7 @@ end
 
 
   def index
-    @messages = Message.all
+    @messages = Message.where("sender_id == ?", "#{session[:user_id]}") + Message.where("receiver_id == ?", "#{session[:user_id]}")
 
 
     respond_to do |format|

@@ -2,7 +2,8 @@ class ErrandsController < ApplicationController
   # GET /errands
   # GET /errands.json
 
-before_filter :require_signed_in_user, only: [:new, :create]
+before_filter :require_signed_in_user, only: [:new, :create, :edit, :update, :destroy]
+
 
 def require_signed_in_user
   unless signed_in?

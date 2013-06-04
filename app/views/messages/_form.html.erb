@@ -25,6 +25,7 @@
   <div class="field">
     <% users = User.all %>
     <%= f.label :receiver_id, "Send to:" %><br />
+    <%= f.hidden_field :receiver_id, value: @message.receiver_id %>
     <%= User.find_by_id(@receiver_id).name %>
   </div>
 
