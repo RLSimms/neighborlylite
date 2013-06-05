@@ -3,6 +3,6 @@ class Errand < ActiveRecord::Base
   belongs_to :giving_user, class_name: 'User'
   belongs_to :receiving_user, class_name: 'User'
 
-  scope :unique_chore_names, lambda { select(:name).uniq}
+  scope :unique_errand_names, lambda { select(:name).uniq}
 
 end

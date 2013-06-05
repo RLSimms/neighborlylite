@@ -63,6 +63,10 @@ end
   def create
     @errand = Errand.new(params[:errand])
 
+    if @errand.name.blank?
+      @errand.name = params[:errand_other]
+    end
+
     respond_to do |format|
       if @errand.save
         format.html { redirect_to @errand, notice: 'Errand was successfully created.' }

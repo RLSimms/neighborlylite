@@ -14,8 +14,13 @@
   <div class="field">
 
     <%= f.label :name %><br />
-    <%= f.collection_select :name, Errand.unique_chore_names.order("name ASC"), :name, :name, :include_blank => "Other" %>
+    <%= f.collection_select :name, Errand.unique_errand_names.order("name ASC"), :name, :name, {:include_blank => "Other"}, {id: :errand_select} %>
   </div>
+
+  <div>
+    <%= text_field_tag :errand_other, value = nil, {id: :errand_other} %>
+  </div>
+
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
