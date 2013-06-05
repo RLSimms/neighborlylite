@@ -5,22 +5,18 @@
 <br />
 <br />
 
+<b>Sent Messages:</b>
 <table class="table table-hover">
   <tr>
-    <th>Whats written</th>
-    <th>Sender</th>
-    <th>Receiver</th>
-    <th>Conversation</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>To:</th>
+    <th>Message:</th>
+    <th>Conversation:</th>
   </tr>
 
-<% @messages.each do |message| %>
+<% @sent_messages.each do |message| %>
   <tr>
-    <td><%= message.whats_written %></td>
-    <td><%= message.sender.name %></td>
     <td><%= message.receiver.name %></td>
+    <td><%= message.whats_written %></td>
     <td><p>Conversation #<%= link_to message.conversation_id, message.conversation %></td>
     <% if message.receiver == current_user || message.sender == current_user %>
         <% if current_user == message.receiver %>
@@ -39,4 +35,31 @@
 
 <br />
 
+<b>Received Messages:</b>
+<table class="table table-hover">
+  <tr>
+    <th>From:</th>
+    <th>Message:</th>
+    <th>Conversation</th>
+  </tr>
+
+<% @received_messages.each do |message| %>
+  <tr>
+    <td><%= message.sender.name %></td>
+    <td><%= message.whats_written %></td>
+    <td><p>Conversation #<%= link_to message.conversation_id, message.conversation %></td>
+    <% if message.receiver == current_user || message.sender == current_user %>
+        <% if current_user == message.receiver %>
+            <% @reply_id = message.sender.id %>
+        <% else %>
+            <% @reply_id = message.receiver.id  %>
+        <% end %>
+    <td><%= link_to 'Reply', new_message_url(receiver_id: @reply_id), class: 'btn' %></td>
+    <% end %>
+    <td><%= link_to 'Show', message, class: 'btn' %></td>
+    <td><%= link_to 'Edit', edit_message_path(message), class: 'btn' %></td>
+    <td><%= link_to 'Delete', message, method: :delete, class: 'btn', data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
 

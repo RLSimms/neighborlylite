@@ -19,8 +19,8 @@ end
 
 
   def index
-    @messages = Message.where("sender_id == ?", "#{session[:user_id]}") + Message.where("receiver_id == ?", "#{session[:user_id]}")
-
+    @sent_messages = Message.where("sender_id == ?", "#{session[:user_id]}")
+    @received_messages = Message.where("receiver_id == ?", "#{session[:user_id]}")
 
     respond_to do |format|
       format.html # index.html.erb
