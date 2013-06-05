@@ -35,7 +35,7 @@
   </div>
   <div class="field">
     <%= f.label :borrower_user_id %><br />
-    <%= f.collection_select :borrower_user_id, @users, :id, :name %>
+    <%= f.collection_select :borrower_user_id, @users, :id, :name, :include_blank => "None! Available for Use" %>
   </div>
   <div class="actions">
     <%= f.submit %>

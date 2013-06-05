@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def index
 
       page_number = params[:page].to_i
-      @users = User.page(page_number).per(3)
+      @users = User.page(page_number).per(4)
 
     if params[:search]
     @user_exists_from_search = User.where("name LIKE ? OR email LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").first

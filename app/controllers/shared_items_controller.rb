@@ -3,11 +3,12 @@ class SharedItemsController < ApplicationController
   # GET /shared_items.json
 
 before_filter :require_signed_in_user, only: [:new, :create, :edit, :update, :destroy]
-before_filter :authorize_user, only: [:edit, :update, :destroy]
+before_filter :authorize_user, only: [:destroy]
+
 
 def require_signed_in_user
   unless signed_in?
-    redirect_to shared_items_url, notice: "Must be signed in for that."
+    redirect_to new_session_url, notice: "Must be signed in for that."
   end
 end
 

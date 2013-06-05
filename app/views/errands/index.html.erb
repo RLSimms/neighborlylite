@@ -37,6 +37,10 @@
     <td>  </td>
     <% end %>
 
+    <% if errand.giving_user != current_user && errand.completed == false %>
+        <td><%= link_to "Message", new_message_url(receiver_id: errand.giving_user.id), class: 'btn' %></td>
+    <% end %>
+
 
     <td><%= link_to 'Show', errand %></td>
     <td><%= link_to 'Edit', edit_errand_path(errand) %></td>

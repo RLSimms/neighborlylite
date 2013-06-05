@@ -32,6 +32,8 @@
     <td><%= image_tag shared_item.photo, :width => 100 %></td>
     <td><%= shared_item.description %></td>
     <td><%= shared_item.price %></td>
+
+
     <% if shared_item.available %>
     <td><%= image_tag("http://www.clker.com/cliparts/e/2/a/d/1206574733930851359Ryan_Taylor_Green_Tick.svg.hi.png", width: 25) %></td>
     <% else %>
@@ -40,19 +42,25 @@
     <td><%= link_to shared_item.owner_user.name, shared_item.owner_user %></td>
     <td><%= link_to shared_item.borrower_user.name, shared_item.borrower_user %></td>
 
-
+    <% if signed_in? %>
+    <% if current_user != shared_item.owner_user && shared_item.available %>
     <td><%= form_for(shared_item) do |f| %>
         <%= f.submit "Borrow this Item", class: 'btn' %>
         <%= f.hidden_field :borrower_user_id, value: current_user.id %>
 
     <% end %>
        </td>
+    <% end %>
+    <% end %>
 
 
 
     <td><%= link_to 'Show', shared_item, class: 'btn' %></td>
+
+    <% if current_user == shared_item.owner_user %>
     <td><%= link_to 'Edit', edit_shared_item_path(shared_item), class: 'btn' %></td>
-    <td><%= link_to 'Destroy', shared_item, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Delete', shared_item, class: 'btn', method: :delete, data: { confirm: 'Are you sure you want to remove this shared item?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

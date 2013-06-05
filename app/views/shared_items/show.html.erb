@@ -22,7 +22,7 @@
 
 <p>
   <b>Borrower user:</b>
-  <%= @shared_item.borrower_user.name %>
+  <%= @shared_item.borrower_user.try(:name) %>
 </p>
 
 
