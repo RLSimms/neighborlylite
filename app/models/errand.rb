@@ -5,4 +5,7 @@ class Errand < ActiveRecord::Base
 
   scope :unique_errand_names, lambda { select(:name).uniq}
 
+
+
+
 end

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
 gem 'kaminari'
 
 gem 'rails', '3.2.13'

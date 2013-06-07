@@ -22,6 +22,11 @@
 </p>
 
 <p>
+  <b>Avatar:</b>
+<%= image_tag @user.avatar.url(:thumb), class: 'img-circle' %>
+</p>
+
+<p>
   <b>Email:</b>
   <%= @user.email %>
 </p>

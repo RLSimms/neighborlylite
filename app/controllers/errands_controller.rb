@@ -43,6 +43,7 @@ end
   # GET /errands/new
   # GET /errands/new.json
   def new
+    # @errand_stock_names = ["Hardware Store", "Grocery Store", "Pharmacy", "Dry Cleaning"]
     @errand = Errand.new
     @errand.giving_user_id = session[:user_id]
     @users = User.where("id != ?", "#{session[:user_id]}")

@@ -42,9 +42,9 @@
     <% end %>
 
 
-    <td><%= link_to 'Show', errand %></td>
-    <td><%= link_to 'Edit', edit_errand_path(errand) %></td>
-    <td><%= link_to 'Destroy', errand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', errand, class: 'btn' %></td>
+    <td><%= link_to 'Edit', edit_errand_path(errand), class: 'btn' %></td>
+    <td><%= link_to 'Destroy', errand, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
