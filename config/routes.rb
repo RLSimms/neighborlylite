@@ -1,5 +1,10 @@
 NeighborlyLite::Application.routes.draw do
 
+  resources :item_transactions
+
+  put '/shared_items/:id/borrow' => 'SharedItems#borrow', as: 'shared_item_borrow'
+
+
   resources :conversations
 
 

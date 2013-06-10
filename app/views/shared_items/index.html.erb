@@ -34,17 +34,20 @@
     <td><%= shared_item.price %></td>
 
 
-    <% if shared_item.available %>
+    <% if !shared_item.borrower_user_id %>
     <td><%= image_tag("http://www.clker.com/cliparts/e/2/a/d/1206574733930851359Ryan_Taylor_Green_Tick.svg.hi.png", width: 25) %></td>
     <% else %>
     <td><%= image_tag("http://images.wikia.com/tractors/images/6/60/X_mark.png", width: 25) %></td>
     <% end %>
     <td><%= link_to shared_item.owner_user.name, shared_item.owner_user %></td>
-    <td><%= link_to shared_item.borrower_user.name, shared_item.borrower_user %></td>
-
+    <% if shared_item.borrower_user %>
+    <td><%= link_to shared_item.borrower_user.try(:name), shared_item.borrower_user %></td>
+    <% else %>
+    <td>None! Available for Use</td>
+    <% end %>
     <% if signed_in? %>
-    <% if current_user != shared_item.owner_user && shared_item.available %>
-    <td><%= form_for(shared_item) do |f| %>
+    <% if current_user != shared_item.owner_user && !shared_item.borrower_user_id %>
+    <td><%= form_for(shared_item, url: shared_item_borrow_url(shared_item.id)) do |f| %>
         <%= f.submit "Borrow this Item", class: 'btn' %>
         <%= f.hidden_field :borrower_user_id, value: current_user.id %>
 

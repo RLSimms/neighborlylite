@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  owner_user_id: 1
+  borrower_user_id: 1
+  rate: 9.99
+  days: 1
+  borrow_date: 2013-06-10 14:13:25
+  return_date: 2013-06-10 14:13:25
+
+two:
+  owner_user_id: 1
+  borrower_user_id: 1
+  rate: 9.99
+  days: 1
+  borrow_date: 2013-06-10 14:13:25
+  return_date: 2013-06-10 14:13:25

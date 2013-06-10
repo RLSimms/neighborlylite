@@ -11,8 +11,12 @@
     </div>
   <% end %>
 
+
+
+  <%= f.hidden_field :conversation_id, value: params[:conversation_id] %>
+
   <div class="field">
-    <%= f.label :whats_written %><br />
+    <%= f.label :whats_written, "Message" %><br />
     <%= f.text_area :whats_written %>
   </div>
   <div class="field">
@@ -39,8 +43,6 @@
 
 <% end %>
 
-
-  <%= f.hidden_field :conversation_id, value: params[:conversation_id] %>
 
 
 <!--

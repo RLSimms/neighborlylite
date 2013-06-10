@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Owner user:</b>
+  <%= @item_transaction.owner_user_id %>
+</p>
+
+<p>
+  <b>Borrower user:</b>
+  <%= @item_transaction.borrower_user_id %>
+</p>
+
+<p>
+  <b>Rate:</b>
+  <%= @item_transaction.rate %>
+</p>
+
+<p>
+  <b>Days:</b>
+  <%= @item_transaction.days %>
+</p>
+
+<p>
+  <b>Borrow date:</b>
+  <%= @item_transaction.borrow_date %>
+</p>
+
+<p>
+  <b>Return date:</b>
+  <%= @item_transaction.return_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_transaction_path(@item_transaction) %> |
+<%= link_to 'Back', item_transactions_path %>
