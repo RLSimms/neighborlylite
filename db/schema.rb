@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610191325) do
+ActiveRecord::Schema.define(:version => 20130611174234) do
 
   create_table "conversations", :force => true do |t|
     t.integer  "user_1_id"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20130610191325) do
     t.datetime "return_date"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.boolean  "paid"
+    t.integer  "shared_item_id"
   end
 
   create_table "messages", :force => true do |t|

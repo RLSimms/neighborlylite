@@ -14,7 +14,7 @@
   <div class="field">
 
     <%= f.label :name %><br />
-    <%= f.collection_select :name, Errand.unique_errand_names.order("name ASC"), :name, :name, {:include_blank => "Other"}, {id: :errand_select} %>
+    <%= f.select :name, options_for_select(["Grocery Store", "Hardware Store", "Dry Cleaners", "Pharmacy"]),  {:include_blank => "Other"}, {id: :errand_select} %>
   </div>
 
   <div>

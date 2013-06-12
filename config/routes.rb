@@ -3,7 +3,7 @@ NeighborlyLite::Application.routes.draw do
   resources :item_transactions
 
   put '/shared_items/:id/borrow' => 'SharedItems#borrow', as: 'shared_item_borrow'
-
+  put '/shared_items/:id/return' => 'SharedItems#return', as: 'shared_item_return'
 
   resources :conversations
 

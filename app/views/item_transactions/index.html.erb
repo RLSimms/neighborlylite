@@ -1,6 +1,6 @@
-<h1>Listing item_transactions</h1>
+<h1>Listing Item Transactions</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>Owner user</th>
     <th>Borrower user</th>
@@ -8,22 +8,35 @@
     <th>Days</th>
     <th>Borrow date</th>
     <th>Return date</th>
-    <th></th>
+    <th>Paid</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @item_transactions.each do |item_transaction| %>
   <tr>
-    <td><%= item_transaction.owner_user_id %></td>
-    <td><%= item_transaction.borrower_user_id %></td>
+    <td><%= item_transaction.owner_user.name %></td>
+    <td><%= item_transaction.borrower_user.name %></td>
     <td><%= item_transaction.rate %></td>
     <td><%= item_transaction.days %></td>
-    <td><%= item_transaction.borrow_date %></td>
-    <td><%= item_transaction.return_date %></td>
-    <td><%= link_to 'Show', item_transaction %></td>
-    <td><%= link_to 'Edit', edit_item_transaction_path(item_transaction) %></td>
-    <td><%= link_to 'Destroy', item_transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= item_transaction.borrow_date.strftime("%a, %b %w, %Y") %></td>
+    <% if item_transaction.return_date %>
+    <td><%= item_transaction.return_date.strftime("%a, %b %w, %Y") %></td>
+    <% else %>
+    <td> </td>
+    <% end %>
+
+   <% if item_transaction.paid %>
+        <td><%= image_tag("http://www.clker.com/cliparts/e/2/a/d/1206574733930851359Ryan_Taylor_Green_Tick.svg.hi.png", width: 25) %></td>
+    <% else %>
+        <td></td>
+    <% end %>
+
+
+
+    <td><%= link_to 'Show', item_transaction, class: 'btn' %></td>
+    <td><%= link_to 'Edit', edit_item_transaction_path(item_transaction), class: 'btn' %></td>
+    <td><%= link_to 'Destroy', item_transaction, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

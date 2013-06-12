@@ -21,9 +21,9 @@
     <th>Available</th>
     <th>Owner user</th>
     <th>Borrower user</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
   </tr>
 
 <% @shared_items.each do |shared_item| %>
@@ -35,39 +35,47 @@
 
 
     <% if !shared_item.borrower_user_id %>
-    <td><%= image_tag("http://www.clker.com/cliparts/e/2/a/d/1206574733930851359Ryan_Taylor_Green_Tick.svg.hi.png", width: 25) %></td>
+        <td><%= image_tag("http://www.clker.com/cliparts/e/2/a/d/1206574733930851359Ryan_Taylor_Green_Tick.svg.hi.png", width: 25) %></td>
     <% else %>
-    <td><%= image_tag("http://images.wikia.com/tractors/images/6/60/X_mark.png", width: 25) %></td>
+        <td><%= image_tag("http://images.wikia.com/tractors/images/6/60/X_mark.png", width: 25) %></td>
     <% end %>
+
     <td><%= link_to shared_item.owner_user.name, shared_item.owner_user %></td>
+
     <% if shared_item.borrower_user %>
-    <td><%= link_to shared_item.borrower_user.try(:name), shared_item.borrower_user %></td>
+            <td><%= link_to shared_item.borrower_user.name, shared_item.borrower_user %></td>
     <% else %>
-    <td>None! Available for Use</td>
+        <td>None! Available for Use</td>
     <% end %>
+
     <% if signed_in? %>
-    <% if current_user != shared_item.owner_user && !shared_item.borrower_user_id %>
-    <td><%= form_for(shared_item, url: shared_item_borrow_url(shared_item.id)) do |f| %>
-        <%= f.submit "Borrow this Item", class: 'btn' %>
-        <%= f.hidden_field :borrower_user_id, value: current_user.id %>
+        <% if current_user != shared_item.owner_user && !shared_item.borrower_user_id %>
+            <td><%= form_for(shared_item, url: shared_item_borrow_url(shared_item.id)) do |f| %>
+            <%= f.submit "Borrow this Item", class: 'btn' %>
+            <%= f.hidden_field :borrower_user_id, value: current_user.id %></td>
+            <% end %>
+    <% end %>
+  <% end %>
 
-    <% end %>
-       </td>
-    <% end %>
-    <% end %>
-
+    <% if signed_in? %>
+        <% if current_user == shared_item.borrower_user %>
+            <td><%= form_for(shared_item, url: shared_item_return_url(shared_item.id)) do |f| %>
+            <%= f.submit "Return Item", class: 'btn' %>
+            <%= f.hidden_field :borrower_user_id, value: nil %></td>
+            <% end %>
+        <% end %>
+  <% end %>
 
 
     <td><%= link_to 'Show', shared_item, class: 'btn' %></td>
 
     <% if current_user == shared_item.owner_user %>
-    <td><%= link_to 'Edit', edit_shared_item_path(shared_item), class: 'btn' %></td>
-    <td><%= link_to 'Delete', shared_item, class: 'btn', method: :delete, data: { confirm: 'Are you sure you want to remove this shared item?' } %></td>
+        <td><%= link_to 'Edit', edit_shared_item_path(shared_item), class: 'btn' %></td>
+        <td><%= link_to 'Delete', shared_item, class: 'btn', method: :delete, data: { confirm: 'Are you sure you want to remove this shared item?' } %></td>
     <% end %>
   </tr>
+
 <% end %>
+
 </table>
-
-<br />
-
 

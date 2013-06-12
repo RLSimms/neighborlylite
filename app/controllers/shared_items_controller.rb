@@ -110,7 +110,27 @@ end
     respond_to do |format|
       if @shared_item.update_attributes(params[:shared_item])
 
-        ItemTransaction.create({owner_user_id: @shared_item.owner_user_id, borrower_user_id: @shared_item.borrower_user_id, borrow_date: Time.now})
+        ItemTransaction.create({owner_user_id: @shared_item.owner_user_id, borrower_user_id: @shared_item.borrower_user_id, borrow_date: Time.now, shared_item_id: @shared_item.id})
+
+        format.html { redirect_to @shared_item, notice: 'Shared item was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @shared_item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+    # PUT /shared_items/1
+  # PUT /shared_items/1.json
+  def return
+    @shared_item = SharedItem.find(params[:id])
+    @item_transaction = @shared_item.item_transactions.last
+
+    respond_to do |format|
+      if @shared_item.update_attributes(params[:shared_item])
+
+        @item_transaction.update_attributes({borrower_user_id: nil, return_date: Time.now})
 
         format.html { redirect_to @shared_item, notice: 'Shared item was successfully updated.' }
         format.json { head :no_content }
