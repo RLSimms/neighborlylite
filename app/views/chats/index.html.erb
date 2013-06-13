@@ -1,0 +1,19 @@
+<h1>Neighborly Chat Room</h1>
+
+<div style="height: 300px; width: 100%; border: thick solid black;">
+
+
+  <ul id="chat">
+    <% @chats.each do |c| %>
+      <%= render 'one_chat', :chat => c  %>
+    <% end %>
+  </ul>
+
+
+<%= form_for(Chat.new, remote: true) do |f| %>
+  <%= f.text_field :content, placeholder: 'Add a new chat here' %>
+<% end %>
+
+</div>
+
+<%= subscribe_to "/chats/new" %>

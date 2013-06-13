@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'private_pub'
+gem 'thin'
+
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 gem 'kaminari'

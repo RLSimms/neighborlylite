@@ -1,0 +1,8 @@
+<li id="chat_<%= chat.id %>" class="chat" data-nid="<%= chat.id %>">
+  <em><b><%= chat.content %></b></em>
+  Sent by: <%= link_to chat.user.name, chat.user %>
+  <%= chat.created_at.strftime("%b %w %r") %>
+  <%= link_to image_tag('http://www.backgroundsy.com/wp-content/images/garbage-bin-icon.jpg', width: 40), chat_url(chat), method: 'delete', remote: true %>
+  <%= link_to image_tag('http://icons.iconarchive.com/icons/custom-icon-design/office/256/edit-icon.png', width: 40), edit_chat_url(chat) %>
+
+</li>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @chat.content %>
+</p>
+
+<p>
+  <b>Sender:</b>
+  <%= @chat.user.name %>
+</p>
+
+<p>
+  <b>Sent at:</b>
+  <%= @chat.created_at.strftime("%b %w %r") %>
+</p>
+
+
+<%= link_to 'Edit', edit_chat_path(@chat) %> |
+<%= link_to 'Back', chats_path %>
